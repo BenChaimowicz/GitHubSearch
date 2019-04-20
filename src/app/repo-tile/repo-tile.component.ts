@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-repo-tile',
@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RepoTileComponent implements OnInit {
 
-  repoID: number;
-  repoName: string;
-  repoAvatar: string;
+  @Input() repoID: number;
+  @Input() repoName: string;
+  @Input() repoAvatar: string;
   repoBookmarked: boolean;
 
   constructor() { }

@@ -9,3 +9,11 @@
 </mat-form-field>
 <button mat-button (click)="onSearch()" >Search</button>
 
+<div *ngIf="isLoaded">
+<app-repo-tile *ngFor="let repo of searchResults"
+  repoID=repo.id
+  repoName=repo.name
+  repoAvatar=repo.avatar >
+
+</app-repo-tile>
+</div>

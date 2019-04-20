@@ -12,13 +12,11 @@ import { map } from 'rxjs/operators';
 export class RepoSearchService {
 
   private path = 'https://api.github.com/search/repositories?q=';
-  searchResults: Repository[];
 
   constructor(private http: HttpClient) {
-    this.searchResults = [];
    }
 
-  public getRepos(search: string): Observable<Repository[]> {
-    return this.http.get<Repository[]>(this.path + search);
+  public getRepos(search: string): Observable<any[]> {
+    return this.http.get<any[]>(this.path + search);
   }
 }

@@ -9,11 +9,13 @@ import { RepoSearchService } from '../repo-search.service';
 })
 export class SearchfieldComponent implements OnInit {
 
-  searchResults: Repository[];
+  searchResults: any[];
   searchString: string;
+  isLoaded: boolean;
 
   constructor(private searchService: RepoSearchService) {
     this.searchResults = [];
+    this.isLoaded = false;
   }
 
   ngOnInit() {
@@ -21,6 +23,9 @@ export class SearchfieldComponent implements OnInit {
 
   onSearch() {
     console.log(this.searchString);
-    this.searchService.getRepos(this.searchString).subscribe(repos => this.searchResults = repos);
+    this.searchService.getRepos(this.searchString).subscribe(repos => { this.searchResults = repos['items']; },
+      error => { console.log(error); },
+      () => { console.log('Request Complete'); this.isLoaded = true; console.log(this.searchResults); });
   }
+
 }
