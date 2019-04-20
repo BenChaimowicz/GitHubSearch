@@ -11,10 +11,19 @@ export class RepoTileComponent implements OnInit {
   @Input() repoName: string;
   @Input() repoAvatar: string;
   repoBookmarked: boolean;
+  vImgURL: string;
 
-  constructor() { }
+
+  constructor() {
+    this.vImgURL = './../../assets/v.png';
+    this.repoBookmarked = false;
+  }
 
   ngOnInit() {
+  }
+
+  onBookmark() {
+    this.repoBookmarked = this.repoBookmarked ? false : true;
   }
 
 }

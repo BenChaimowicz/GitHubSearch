@@ -3,3 +3,7 @@ div {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+app-repo-tile {
+  margin: 2px;
+}
