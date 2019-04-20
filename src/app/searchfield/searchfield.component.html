@@ -11,9 +11,9 @@
 
 <div *ngIf="isLoaded">
 <app-repo-tile *ngFor="let repo of searchResults"
-  repoID=repo.id
-  repoName=repo.name
-  repoAvatar=repo.avatar >
+  [repoID]=repo.id
+  [repoName]=repo.name
+  [repoAvatar]=repo.owner.avatar_url >
 
 </app-repo-tile>
 </div>

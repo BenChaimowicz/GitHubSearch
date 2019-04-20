@@ -25,7 +25,11 @@ export class SearchfieldComponent implements OnInit {
     console.log(this.searchString);
     this.searchService.getRepos(this.searchString).subscribe(repos => { this.searchResults = repos['items']; },
       error => { console.log(error); },
-      () => { console.log('Request Complete'); this.isLoaded = true; console.log(this.searchResults); });
+      () => {
+        console.log('Request Complete');
+        this.isLoaded = true; console.log(this.searchResults);
+        console.log(this.searchResults[0].name + this.searchResults[0].owner.avatar_url);
+      });
   }
 
 }
