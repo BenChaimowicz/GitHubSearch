@@ -18,7 +18,7 @@ export class RepoSearchService {
     this.searchResults = [];
    }
 
-  public getRepos(search: string) {
-    return this.http.get(this.path + search);
+  public getRepos(search: string): Observable<Repository[]> {
+    return this.http.get<Repository[]>(this.path + search);
   }
 }

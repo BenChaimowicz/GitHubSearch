@@ -1,5 +1,11 @@
 <mat-form-field>
-  <input matInput placeholder="Enter Search here...">
+  <input
+    matInput
+    name="searchInput"
+    placeholder="Enter Search here..."
+    [(ngModel)]="searchString"
+    (keyup.enter)="onSearch()"
+  >
 </mat-form-field>
-<button mat-button>Search</button>
+<button mat-button (click)="onSearch()" >Search</button>
 
