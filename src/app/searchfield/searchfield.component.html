@@ -1,3 +1,4 @@
+<div>
 <mat-form-field>
   <input
     matInput
@@ -8,7 +9,7 @@
   >
 </mat-form-field>
 <button mat-button (click)="onSearch()" >Search</button>
-
+</div>
 <div *ngIf="isLoaded">
 <app-repo-tile *ngFor="let repo of searchResults"
   [repoID]=repo.id
@@ -17,3 +18,9 @@
 
 </app-repo-tile>
 </div>
+<mat-paginator
+[length]="length"
+[pageSize]="pageSize"
+[pageSizeOptions]="pageSizeOptions"
+(page)="onPage($event)"
+></mat-paginator>

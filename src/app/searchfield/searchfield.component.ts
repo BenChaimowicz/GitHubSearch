@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Repository } from '../repository.interface';
 import { RepoSearchService } from '../repo-search.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-searchfield',
@@ -13,6 +14,12 @@ export class SearchfieldComponent implements OnInit {
   searchString: string;
   isLoaded: boolean;
 
+  length: number;
+  pageSize = 30;
+  pageSizeOptions = [30];
+
+  pageEvent: PageEvent;
+
   constructor(private searchService: RepoSearchService) {
     this.searchResults = [];
     this.isLoaded = false;
@@ -23,6 +30,7 @@ export class SearchfieldComponent implements OnInit {
 
   onSearch() {
     console.log(this.searchString);
+    this.searchService.getRepos(this.searchString).subscribe(l => { this.length = l['total_count']; });
     this.searchService.getRepos(this.searchString).subscribe(repos => { this.searchResults = repos['items']; },
       error => { console.log(error); },
       () => {
@@ -32,4 +40,11 @@ export class SearchfieldComponent implements OnInit {
       });
   }
 
+  onPage(e: PageEvent) {
+    console.log(this.searchString + '&page=' + e.pageIndex + 1);
+    if (e.pageIndex > 0) {
+      this.searchService.getRepos(this.searchString + '&page=' + (e.pageIndex + 1))
+        .subscribe(repos => { this.searchResults = repos['items']; });
+    } else { this.onSearch(); }
+  }
 }
